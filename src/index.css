@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Inter", sans-serif;
+  --font-display: "Russo One", sans-serif;
+
+  --color-primary: #ff4d00;
+  --color-primary-dark: #cc3d00;
+  --color-secondary: #00d4ff;
+  --color-dark: #111827;
+  --color-surface: #1f2937;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    @apply bg-gray-100 text-gray-900 antialiased dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-linear-to-r from-primary to-red-600 text-white font-bold py-3 px-6 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 uppercase tracking-wider;
+    clip-path: polygon(
+      12px 0,
+      100% 0,
+      100% calc(100% - 12px),
+      calc(100% - 12px) 100%,
+      0 100%,
+      0 12px
+    );
+  }
+
+  .card-sport {
+    @apply bg-white shadow-lg relative overflow-hidden transition-all hover:shadow-xl border-l-4 border-primary dark:bg-gray-800 dark:border-l-primary;
+    border-radius: 1rem;
+  }
+
+  .input-sport {
+    @apply w-full p-4 bg-white border-2 border-gray-200 rounded-lg focus:border-primary focus:ring-0 outline-none font-bold text-gray-800 transition-colors placeholder-gray-400 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:placeholder-gray-500;
+  }
+}
+
+@layer utilities {
+  .clip-sport-card {
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 90% 100%, 0 100%);
+  }
+  .clip-sport-button {
+    clip-path: polygon(
+      12px 0,
+      100% 0,
+      100% calc(100% - 12px),
+      calc(100% - 12px) 100%,
+      0 100%,
+      0 12px
+    );
+  }
+  .text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  .text-shadow-lg {
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+  }
+}

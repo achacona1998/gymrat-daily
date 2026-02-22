@@ -115,8 +115,8 @@ export const RoutineForm = () => {
 
   return (
     <div className="pb-32 px-4 pt-6 bg-gray-50 min-h-screen dark:bg-gray-900">
-      <div className="flex justify-between items-center mb-8 sticky top-0 bg-gray-50 z-10 py-2 dark:bg-gray-900">
-        <div className="flex items-center">
+      <div className="flex justify-between items-center mb-8 sticky top-0 bg-gray-50 z-10 py-2 dark:bg-gray-900 -mx-4 px-3 rounded-2xl">
+        <div className="flex items-center ">
           <button
             onClick={() => navigate(-1)}
             className="mr-4 p-2 bg-white rounded-full shadow-md text-gray-600 hover:text-primary transition dark:bg-gray-800 dark:text-gray-300">
@@ -201,7 +201,7 @@ export const RoutineForm = () => {
                 <button
                   type="button"
                   onClick={() => removeExercise(index)}
-                  className="absolute -top-3 -right-3 p-2 bg-white text-red-500 rounded-full shadow-md hover:bg-red-500 hover:text-white transition z-10 border border-gray-100 dark:bg-gray-700 dark:border-gray-600">
+                  className="absolute -top-3 -right-3 p-2 bg-white text-red-500 rounded-full shadow-md hover:bg-red-500 hover:text-white transition  border border-gray-100 dark:bg-gray-700 dark:border-gray-600">
                   <Trash2 size={16} />
                 </button>
 

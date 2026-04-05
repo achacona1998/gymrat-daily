@@ -86,11 +86,8 @@ export const Layout = () => {
       <header className="bg-linear-to-r from-gray-900 to-gray-800 text-white p-4 shadow-lg sticky top-0 z-30 flex justify-between items-center overflow-hidden">
         <div className="absolute top-0 right-0 w-32 h-full bg-primary opacity-20 -skew-x-12 transform translate-x-10"></div>
 
-        <div className="flex items-center gap-2 z-10">
-          <Activity className="text-primary" size={28} />
-          <h1 className="text-2xl font-display font-black tracking-widest italic text-shadow">
-            GYMRAT<span className="text-primary">DAILY</span>
-          </h1>
+        <div className=" z-10">
+          <img src="/logo/logo_horizontal.avif" alt="logo de la app" className="w-auto h-16" />
         </div>
 
         <button

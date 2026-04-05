@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Activity } from "lucide-react";
 
 export const LoadingScreen = ({ onComplete }) => {
   const [progress, setProgress] = useState(0);
@@ -43,11 +42,8 @@ export const LoadingScreen = ({ onComplete }) => {
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="mb-12 flex flex-col items-center">
-        <Activity size={64} className="text-primary mb-4" />
-        <h1 className="text-4xl font-display font-black italic tracking-widest">
-          GYMRAT<span className="text-primary">DAILY</span>
-        </h1>
+        className=" flex flex-col items-center">
+        <img src="/logo/logo_vertical.avif" alt="Logo de la aplicacion" className="h-auto w-[500px]"/>
       </motion.div>
 
       <div className="w-64 h-4 bg-gray-800 rounded-full overflow-hidden relative skew-x-12 border border-gray-700">

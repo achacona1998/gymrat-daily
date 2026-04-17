@@ -14,6 +14,8 @@ import { Exercises } from "./pages/Exercises";
 import { Achievements } from "./pages/Achievements";
 import { Onboarding } from "./pages/Onboarding";
 import { LoadingScreen } from "./components/LoadingScreen";
+import { ToastProvider } from "./contexts/ToastContext";
+import { PageTransition } from "./components/PageTransition";
 import { AnimatePresence } from "framer-motion";
 
 const MainContent = () => {
@@ -57,7 +59,11 @@ const MainContent = () => {
 function App() {
   return (
     <AppProvider>
-      <MainContent />
+      <ToastProvider>
+        <PageTransition>
+          <MainContent />
+        </PageTransition>
+      </ToastProvider>
     </AppProvider>
   );
 }

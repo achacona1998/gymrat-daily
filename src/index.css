@@ -13,6 +13,138 @@
   --color-surface: #1f2937;
 }
 
+/* CSS Custom Properties - Animation Transitions */
+:root {
+  --transition-fast: 200ms;
+  --transition-normal: 300ms;
+  --transition-slow: 400ms;
+  
+  /* Toast Colors */
+  --toast-success: #22c55e;
+  --toast-error: #ef4444;
+  --toast-warning: #f59e0b;
+  --toast-info: #00d4ff;
+}
+
+/* Keyframes - Phase 1 */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes slideInUp {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  from { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+@keyframes scaleIn {
+  from { 
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to { 
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Animation Utility Classes */
+.animate-fadeIn {
+  animation: fadeIn var(--transition-normal) ease-out forwards;
+}
+
+.animate-fadeOut {
+  animation: fadeOut var(--transition-fast) ease-in forwards;
+}
+
+.animate-slideInUp {
+  animation: slideInUp var(--transition-normal) ease-out forwards;
+}
+
+.animate-slideInDown {
+  animation: slideInDown var(--transition-fast) ease-in forwards;
+}
+
+.animate-scaleIn {
+  animation: scaleIn var(--transition-normal) ease-out forwards;
+}
+
+.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* Page Entry Animation */
+.animate-page-enter {
+  animation: fadeIn 200ms ease-out, slideInUp 300ms ease-out;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .animate-fadeIn,
+  .animate-fadeOut,
+  .animate-slideInUp,
+  .animate-slideInDown,
+  .animate-scaleIn,
+  .animate-page-enter {
+    animation: fadeIn 0ms forwards;
+  }
+}
+
 @layer base {
   body {
     font-family: var(--font-sans);

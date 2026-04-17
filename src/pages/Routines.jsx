@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useApp } from "../context/AppContext";
+import { useToast } from "../contexts/ToastContext";
 import { Link, useNavigate } from "react-router-dom";
 import {
   Plus,
@@ -111,6 +112,9 @@ export const Routines = () => {
         return a.day - b.day;
       });
 
+  // Toast notifications
+  const { showSuccess, showError } = useToast();
+
   const handleImportRoutine = (routine) => {
     try {
       // Create a unique ID safely (fallback for environments without crypto.randomUUID)
@@ -127,12 +131,12 @@ export const Routines = () => {
       };
 
       addRoutine(newRoutine);
-      alert("Rutina importada a tus rutinas!");
+      showSuccess("Rutina importada a tus rutinas!");
       setShowSuggested(false);
       setSelectedDay("all");
     } catch (error) {
       console.error("Error importing routine:", error);
-      alert("Hubo un error al importar la rutina. Inténtalo de nuevo.");
+      showError("Hubo un error al importar la rutina. Inténtalo de nuevo.");
     }
   };
 

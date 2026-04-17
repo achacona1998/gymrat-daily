@@ -141,23 +141,27 @@ export const checkNewAchievements = (history, currentAchievements) => {
 
   // Consistency King: 4 consecutive weeks with at least 1 workout
   if (!isUnlocked("consistency_king")) {
-    const weeks = Object.keys(workoutsByWeek).sort(); // Sort "2023-1", "2023-2" etc.
-    // This simple sort works for "Year-Week" format usually, but strict ISO logic is better.
-    // Let's assume user consistency is recent.
-    let consecutive = 0;
-    // Simplified check: just checking if we have 4 keys implies 4 weeks of working out? 
-    // No, they must be consecutive.
-    // Parsing "2023-45" to numbers and checking gaps is robust.
-    
-    // Convert keys to absolute week numbers for easier math roughly
-    // Or just iterate and check gaps.
-    // For now, let's skip complex "consecutive" logic implementation details to avoid bugs 
-    // and just award if they have 4+ active weeks total as a fallback or keep it strict later.
-    // Let's implement a simple version:
-    if (Object.keys(workoutsByWeek).length >= 4) {
-       // Only strictly consecutive? Let's verify 4 weeks exist for now to be generous.
-       // Or real logic:
-       // TODO: Implement strict consecutive week check
+    const weeks = Object.keys(workoutsByWeek).sort();
+    if (weeks.length >= 4) {
+      // Check for 4 consecutive weeks
+      let consecutiveCount = 1;
+      for (let i = 1; i < weeks.length; i++) {
+        const [prevYear, prevWeek] = weeks[i - 1].split("-").map(Number);
+        const [currYear, currWeek] = weeks[i].split("-").map(Number);
+        
+        // Calculate week difference
+        let diff = (currYear - prevYear) * 52 + (currWeek - prevWeek);
+        
+        if (diff === 1) {
+          consecutiveCount++;
+          if (consecutiveCount >= 4) {
+            newUnlocked.push("consistency_king");
+            break;
+          }
+        } else {
+          consecutiveCount = 1;
+        }
+      }
     }
   }
 

@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { useApp } from "../context/AppContext";
+import { useToast } from "../contexts/ToastContext";
 import {
   Bell,
   Trash2,
@@ -29,6 +30,9 @@ export const Settings = () => {
     updateSettings,
   } = useApp();
   const fileInputRef = useRef(null);
+
+  // Toast notifications
+  const { showSuccess, showError } = useToast();
 
   const handleReset = () => {
     if (
@@ -96,16 +100,16 @@ export const Settings = () => {
                 JSON.stringify(data.achievements),
               );
 
-            alert(
+            showSuccess(
               "Datos importados correctamente. La aplicación se reiniciará.",
             );
             window.location.reload();
           }
         } else {
-          alert("El archivo no tiene un formato válido.");
+          showError("El archivo no tiene un formato válido.");
         }
       } catch (err) {
-        alert("Error al leer el archivo. Asegúrate de que es un JSON válido.");
+        showError("Error al leer el archivo. Asegúrate de que es un JSON válido.");
         console.error(err);
       }
     };

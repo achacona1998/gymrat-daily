@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useApp } from "../context/AppContext";
+import { useToast } from "../contexts/ToastContext";
 import {
   convertWeightToDisplay,
   convertWeightToStorage,
@@ -80,6 +81,9 @@ export const Profile = () => {
     }
   }, [height, weight, settings.units]);
 
+  // Toast notifications
+  const { showSuccess, showError } = useToast();
+
   const handleSave = () => {
     const weightMetric = parseFloat(
       convertWeightToStorage(weight, settings.units),
@@ -133,7 +137,7 @@ export const Profile = () => {
       measurements: updatedMeasurements,
     });
 
-    alert("Perfil actualizado correctamente");
+    showSuccess("Perfil actualizado correctamente");
   };
 
   const getBmiStatus = (bmiValue) => {
